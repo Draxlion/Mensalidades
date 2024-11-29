@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Planos</title>
+    </head>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Poppins,sans-serif;
+        }
+
+        body{
+            display: inline-block;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: white;
+        }
+
+        @font-face {
+            font-family:titulo;
+            src: url(Poppins-SemiBold.ttf);
+        }
+
+
+        @media (max-width: 1020px) {
+            .wrapper .table{
+                width: calc(50% - 20px);
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 698px) {
+            .wrapper .table{
+                width:100%
+            }
+        }
+
+        .container{
+            max-width: 1280px;
+            margin: auto;
+        }
+
+        .flex{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header{
+            width: 100%;
+            padding: 60px 4%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: 0.2s;
+        }
+
+        header.rolagem{
+            background-color: #fff;
+            padding: 20px 4%;
+        }
+
+        header.rolagem a, header.rolagem i{
+            color: #591902;
+        }
+
+        head i{
+            font-size:30px;
+            color: #ffffff00;
+        }
+
+        header ul{
+            list-style-type: none;
+        }
+
+        header ul li{
+            display: inline-block;
+            margin: 0 40px;
+        }
+
+        header ul li a{
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .btn-contato button{
+            width: 120px;
+            height: 40px;
+            border: 0;
+            background-color:#F2C791;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .banner{
+            height: 100vh;
+            width: 100%;
+            background-image: url(images/pp3.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .banner h1{
+            font-size: 4em;
+            padding: 20%;
+        }
+
+        .banner h1 span{
+            color: #110900;
+        }
+
+        .section.waves-box{
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .wave{
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            bottom: 0;
+            background-image: url(images/wave.png);
+            background-size: 1000px 100px;
+            animation: animation 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes animation{
+            0%{
+                transform: translateY(0px);
+            }
+            100%{
+                transform: translateY(10px);
+            }
+        }
+
+        #wave1{
+            z-index: 1000;
+            background-position-x: 500px;
+            opacity: 0.3;
+        }
+
+        #wave2{
+            z-index: 999;
+            background-position-x: 400px;
+            opacity: 0.5;
+        }
+
+        #wave3{
+            z-index: 998;
+            background-position-x: 2300px;
+            opacity: 0.7;
+        }
+
+        #wave4{
+            z-index: 997;
+            background-position-x: 200px;
+            opacity: 0,8;
+        }
+
+        .wrapper{
+            min-width: 1090px;
+            width: 100%;
+            background: -webkit-linear-gradient(top, #ffffffc5,#bf5b214b);
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 50px;
+        }
+
+        .wrapper .table{
+            background-color: rgb(255, 255, 255);
+            width: calc(33% - 20px);
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+            border-radius: 20px;
+        }
+
+        .table .price-section{
+            display: flex;
+            justify-content: center;
+        }
+
+        .table .price-section .price-area{
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            padding: 2px;
+        }
+
+        .price-area .inner-area{
+            height: 100%;
+            width: auto;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            color: #fff;
+            line-height: 117px;
+            text-align: center;
+            position: relative;
+        }
+
+        .price-area .inner-area .text{
+            font-size: 25px;
+            font-weight: 400;
+            position: absolute;
+            top: -10px;
+            left: 17px;
+        }
+
+        .price-area .inner-area .price{
+            font-size: 45px;
+            font-weight: 500;
+        }
+
+        .table .package-name{
+            width: 100%;
+            height: 2px;
+            margin: 35px 0;
+            position: relative;
+        }
+
+        .table .package-name::before{
+            position: absolute;
+            content: "Basic";
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            font-size: 25px;
+            font-weight: 500;
+            padding: 0 15px;
+        }
+
+        .table .features li{
+            margin-bottom: 15px;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .features li .list-name{
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+
+        .features li .icon{
+            font-size: 18px;
+        }
+
+        .features li .icon.check{
+            color: rgb(153, 255, 0);
+            font-weight: 100;
+        }
+
+        .features li .icon.cross{
+            color: red;
+        }
+
+
+        .table .btn{
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+
+        }
+
+        .table .btn button{
+            width: 80%;
+            height: 50px;
+            color: #fff;
+            font-weight: 500;
+            border:none;
+            outline: none;
+            border-radius: 25px;
+            font-size: 20px;
+            cursor:pointer;
+            transition: all 0.3s ease;
+        }
+
+        .table .btn button:hover{
+            border-radius: 5px;
+        }
+
+        .table ::selection{
+            color: #fff;
+        }
+        .basic ::selection,
+        .basic .price-area,
+        .basic .inner-area,
+        .basic .package-name{
+            background: #ffc30d;
+        }
+
+        .basic .btn button{
+            background-color: #fff;
+            border: 2px solid #ffc30d;
+            color: #ffc30d;
+        }
+
+        .basic .btn button:hover{
+            color: #fff;
+            background-color: #ffc30d;
+        }
+
+        .intermediario ::selection,
+        .intermediario .price-area,
+        .intermediario .inner-area,
+        .intermediario .package-name{
+            background:  #ff5e00;
+        }
+
+        .intermediario .btn button{
+            background-color: #fff;
+            border: 2px solid  #ff5e00;
+            color:#ff5e00;
+        }
+
+        .intermediario .btn button:hover{
+            color: #fff;
+            background-color: #ff5e00;
+        }
+
+        .avançado ::selection,
+        .avançado .price-area,
+        .avançado .inner-area,
+        .avançado .package-name{
+            background: rgb(218, 2, 38) ;
+        }
+
+        .avançado .btn button{
+            background-color: #fff;
+            border: 2px solid rgb(218, 2, 38) ;
+            color: rgb(218, 2, 38) ;
+        }
+
+        .avançado .btn button:hover{
+            color: #fff;
+            background-color: rgb(218, 2, 38) ;
+        }
+
+        .basic .package-name::before{
+            content: "Básico";
+        }
+
+        .intermediario .package-name::before{
+            content: "intermediário";
+        }
+
+        .avançado .package-name::before{
+            content: "Avançado";
+        }
+
+        .table .ribbon{
+            height: 150px;
+            width: 150px;
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            overflow: hidden;
+        }
+
+        .table .ribbon::before,
+        .table .ribbon::after{
+            position: absolute;
+            content: "";
+            display: block;
+            border: 5px solid rgb(146, 1, 26);
+            border-top-color: transparent;
+            border-left-color: transparent;
+        }
+
+        .table .ribbon::before{
+            top: 0px;
+            right: 24px;
+        }
+
+        .table .ribbon::after{
+            bottom: 24px;
+            left: 0px;
+        }
+
+        .table .ribbon span{
+            position: absolute;
+            background: rgb(218, 2, 38) ;
+            width: 200px;
+            padding: 10px 0;
+            color: #fff;
+            text-align: center;
+            top: 30px;
+            right: 0px;
+            transform: rotate(-45deg);
+            text-transform: uppercase;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+        }
+    </style>
+
+    <header id="header">
+        <div class="container">
+            <div class="flex">
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
+                    <path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                </svg></a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Planos</a></li>
+                        <li><a href="#">Patrocinadores</a></li>
+                    </ul>
+                </nav>
+                <div class="btn-contato">
+                    <a href="#"><button>Login</button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="banner">
+        <h1>Invista em conhecimento <span>transforme seu potencial</span></h1>
+    </section>
+
+    <body>
+        
+        <section class="waves-box">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </section>
+
+        <div class="wrapper">
+            <div class="table basic">
+                <div class="price-section">
+                    <div class="price-area">
+                        <div class="inner-area">
+                            <span class="text">$</span>
+                            <span class="price">29</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="package-name"></div>
+                <div class="features">
+                    <li>
+                        <span class="list-name">Curso 100% ead</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Plataforma de vídeos</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Material complementar</span>
+                        <span class="icon cross"><i class="fas fa-cross"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Atividades interativas</span>
+                        <span class="icon cross"><i class="fas fa-cross"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Certificado</span>
+                        <span class="icon cross"><i class="fas fa-cross"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                        </svg></i></span>
+                    </li>
+                </div>
+                <div class="btn"><button>Comprar</button></div>
+            </div>
+            <div class="table intermediario">
+                <div class="price-section">
+                    <div class="price-area">
+                        <div class="inner-area">
+                            <span class="text">$</span>
+                            <span class="price">50</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="package-name"></div>
+                <div class="features">
+                    <li>
+                        <span class="list-name">Curso 100% ead</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Plataforma de vídeos</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Material complementar</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Atividades interativas</span>
+                        <span class="icon cross"><i class="fas fa-cross"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Certificado</span>
+                        <span class="icon cross"><i class="fas fa-cross"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                        </svg></i></span>
+                    </li>
+                </div>
+                <div class="btn"><button>Comprar</button></div>
+            </div>
+            <div class="table avançado">
+                <div class="ribbon"><span>Popular</span></div>
+                <div class="price-section">
+                    <div class="price-area">
+                        <div class="inner-area">
+                            <span class="text">$</span>
+                            <span class="price">80</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="package-name"></div>
+                <div class="features">
+                    <li>
+                        <span class="list-name">Curso 100% ead</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Plataforma de vídeos</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Material complementar</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Atividades interativas</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                    <li>
+                        <span class="list-name">Certificado</span>
+                        <span class="icon check"><i class="fas fa-check"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg></i></span>
+                    </li>
+                </div>
+                <div class="btn"><button>Comprar</button></div>
+            </div>
+        </div>
+
+
+        <script>
+            window.addEventListener("scroll", function(){
+                let header = document.querySelector('#header')
+                header.classList.toggle('rolagem',window.scrollY > 150)
+            })
+
+            var onda1 = document.getElementById('wave1')
+            var onda2 = document.getElementById('wave2')
+            var onda3 = document.getElementById('wave3')
+            var onda4 = document.getElementById('wave4')
+
+            window.addEventListener('scroll', function(){
+                var rolagemPos = this.window.scrollY
+                onda1.style.backgroundPositionX = 400 + rolagemPos * 4 + 'px'
+            })
+        </script>
+    </body>
+</html>
